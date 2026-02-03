@@ -1,0 +1,12 @@
+def calculate_gst(amount, gst_rate):
+    sgst = (amount * gst_rate / 100) / 2
+    cgst = (amount * gst_rate / 100) / 2
+    total = amount + sgst + cgst    
+    print(f"Original Amount: ₹{amount}")
+    print(f"SGST: ₹{sgst}")
+    print(f"CGST: ₹{cgst}")
+    print(f"Total Amount (including GST): ₹{total}")
+pro_name=input("Enter the produt name: ") 
+amount = float(input("Enter the product price: ₹"))
+gst_rate =18
+calculate_gst(amount, gst_rate)
