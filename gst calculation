@@ -1,12 +1,25 @@
+
 def calculate_gst(amount, gst_rate):
     sgst = (amount * gst_rate / 100) / 2
     cgst = (amount * gst_rate / 100) / 2
-    total = amount + sgst + cgst    
-    print(f"Original Amount: ₹{amount}")
-    print(f"SGST: ₹{sgst}")
-    print(f"CGST: ₹{cgst}")
-    print(f"Total Amount (including GST): ₹{total}")
-pro_name=input("Enter the produt name: ") 
-amount = float(input("Enter the product price: ₹"))
-gst_rate =18
-calculate_gst(amount, gst_rate)
+    total = amount + sgst + cgst
+    
+    return sgst, cgst, total
+gst_rate = 18
+items = []
+num_items = int(input("Enter number of products: "))
+for i in range(num_items):
+    product_name = input(f"\nEnter name of product {i+1}: ")
+    amount = float(input(f"Enter price of {product_name}: ₹"))
+    sgst, cgst, total = calculate_gst(amount, gst_rate)
+    items.append((product_name, amount, sgst, cgst, total))
+print("\n--- Invoice ---")
+grand_total = 0
+for product_name, amount, sgst, cgst, total in items:
+    print(f"\nProduct: {product_name}")
+    print(f"Original Amount: ₹{amount:.2f}")
+    print(f"SGST (@{gst_rate/2}%): ₹{sgst:.2f}")
+    print(f"CGST (@{gst_rate/2}%): ₹{cgst:.2f}")
+    print(f"Total Amount (including GST): ₹{total:.2f}")
+    grand_total += total
+print("\nGrand Total (all items including GST): ₹{:.2f}".format(grand_total))
